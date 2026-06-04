@@ -73,12 +73,12 @@ Desenvolver um microsservico em Java 25 com Spring Boot para encurtamento de URL
 
 ### 5. Persistencia com Redis
 
-- [ ] Configurar conexao com Redis no `application.yml` ou `application.properties`.
-- [ ] Criar repository para gravar e buscar URLs no Redis.
-- [ ] Definir formato das chaves no Redis, por exemplo `short-url:{code}`.
-- [ ] Implementar gravacao do relacionamento codigo curto -> URL original.
-- [ ] Implementar busca da URL original pelo codigo curto.
-- [ ] Avaliar uso de TTL para expiracao das URLs encurtadas.
+- [x] Configurar conexao com Redis no `application.yml` ou `application.properties`.
+- [x] Criar repository para gravar e buscar URLs no Redis.
+- [x] Definir formato das chaves no Redis, por exemplo `short-url:{code}`.
+- [x] Implementar gravacao do relacionamento codigo curto -> URL original.
+- [x] Implementar busca da URL original pelo codigo curto.
+- [x] Avaliar uso de TTL para expiracao das URLs encurtadas.
 
 ### 6. Endpoints da API
 
