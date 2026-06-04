@@ -42,18 +42,18 @@ Desenvolver um microsservico em Java 25 com Spring Boot para encurtamento de URL
 
 ### 2. Modelagem e Contratos
 
-- [ ] Criar entidade/modelo para representar a URL encurtada.
-- [ ] Definir campos minimos:
-  - [ ] Codigo curto.
-  - [ ] URL original.
-  - [ ] Data de criacao.
-  - [ ] Data de expiracao, se houver regra de TTL.
-- [ ] Criar DTO de requisicao para receber a URL original.
-- [ ] Criar DTO de resposta com:
-  - [ ] URL original.
-  - [ ] Codigo curto.
-  - [ ] URL encurtada completa.
-- [ ] Definir padrao de resposta de erro da API.
+- [x] Criar entidade/modelo para representar a URL encurtada.
+- [x] Definir campos minimos:
+  - [x] Codigo curto.
+  - [x] URL original.
+  - [x] Data de criacao.
+  - [x] Data de expiracao, se houver regra de TTL.
+- [x] Criar DTO de requisicao para receber a URL original.
+- [x] Criar DTO de resposta com:
+  - [x] URL original.
+  - [x] Codigo curto.
+  - [x] URL encurtada completa.
+- [x] Definir padrao de resposta de erro da API.
 
 ### 3. Validacao da URL Original
 
