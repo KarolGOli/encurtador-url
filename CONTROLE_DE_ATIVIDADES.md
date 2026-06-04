@@ -65,11 +65,11 @@ Desenvolver um microsservico em Java 25 com Spring Boot para encurtamento de URL
 
 ### 4. Geracao da URL Encurtada
 
-- [ ] Implementar estrategia de geracao do codigo curto.
-- [ ] Garantir tamanho adequado para o codigo curto.
-- [ ] Evitar colisoes verificando se o codigo ja existe no Redis.
-- [ ] Definir quantidade maxima de tentativas em caso de colisao.
-- [ ] Definir base URL configuravel para montar a URL encurtada completa.
+- [x] Implementar estrategia de geracao do codigo curto.
+- [x] Garantir tamanho adequado para o codigo curto.
+- [x] Evitar colisoes verificando se o codigo ja existe no Redis.
+- [x] Definir quantidade maxima de tentativas em caso de colisao.
+- [x] Definir base URL configuravel para montar a URL encurtada completa.
 
 ### 5. Persistencia com Redis
 

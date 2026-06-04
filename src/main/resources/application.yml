@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: encurtador_url
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+server:
+  port: ${SERVER_PORT:8080}
+
+app:
+  url-shortener:
+    base-url: "${APP_BASE_URL:http://localhost:${SERVER_PORT:8080}}"
+    short-code-length: ${SHORT_CODE_LENGTH:8}
+    max-generation-attempts: ${SHORT_CODE_MAX_ATTEMPTS:10}
