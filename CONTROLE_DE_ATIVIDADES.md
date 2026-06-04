@@ -23,22 +23,22 @@ Desenvolver um microsservico em Java 25 com Spring Boot para encurtamento de URL
 
 ### 1. Inicializacao do Projeto
 
-- [ ] Criar o projeto Spring Boot com Java 25.
-- [ ] Definir ferramenta de build: Maven.
-- [ ] Adicionar dependencias principais:
-  - [ ] Spring Web.
-  - [ ] Spring Data Redis.
-  - [ ] Bean Validation.
-  - [ ] Lombok, se o projeto optar por usa-lo.
-  - [ ] Spring Boot Test.
-- [ ] Configurar estrutura base de pacotes:
-  - [ ] `controller`
-  - [ ] `service`
-  - [ ] `repository`
-  - [ ] `entity`
-  - [ ] `dto`
-  - [ ] `config`
-  - [ ] `exception`
+- [x] Criar o projeto Spring Boot com Java 25.
+- [x] Definir ferramenta de build: Maven.
+- [x] Adicionar dependencias principais:
+  - [x] Spring Web.
+  - [x] Spring Data Redis.
+  - [x] Bean Validation.
+  - [x] Lombok, se o projeto optar por usa-lo.
+  - [x] Spring Boot Test.
+- [x] Configurar estrutura base de pacotes:
+  - [x] `controller`
+  - [x] `service`
+  - [x] `repository`
+  - [x] `entity`
+  - [x] `dto`
+  - [x] `config`
+  - [x] `exception`
 
 ### 2. Modelagem e Contratos
 
