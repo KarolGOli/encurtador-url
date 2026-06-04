@@ -2,11 +2,11 @@
 
 ## Objetivo
 
-Desenvolver um microsservico em Java 21 com Spring Boot para encurtamento de URLs. A aplicacao deve receber uma URL original, validar se ela e valida, gerar um codigo curto, persistir o relacionamento no Redis e redirecionar o usuario para a URL original quando a URL encurtada for acessada pelo navegador.
+Desenvolver um microsservico em Java 25 com Spring Boot para encurtamento de URLs. A aplicacao deve receber uma URL original, validar se ela e valida, gerar um codigo curto, persistir o relacionamento no Redis e redirecionar o usuario para a URL original quando a URL encurtada for acessada pelo navegador.
 
 ## Premissas Tecnicas
 
-- Linguagem: Java 21.
+- Linguagem: Java 25.
 - Framework: Spring Boot.
 - Banco de dados/cache: Redis.
 - Build sugerido: Maven.
@@ -14,11 +14,16 @@ Desenvolver um microsservico em Java 21 com Spring Boot para encurtamento de URL
 - Automacao local: Makefile.
 - Arquitetura: camadas com controller, service, repository, entity/model, DTOs, config e exception handling.
 
+## Fluxo de Trabalho
+
+- [ ] Ao concluir cada fase do controle de atividades, realizar um commit com uma mensagem clara.
+- [ ] Apos cada commit de fase concluida, executar o push para o repositorio GitHub.
+
 ## Atividades
 
 ### 1. Inicializacao do Projeto
 
-- [ ] Criar o projeto Spring Boot com Java 21.
+- [ ] Criar o projeto Spring Boot com Java 25.
 - [ ] Definir ferramenta de build: Maven.
 - [ ] Adicionar dependencias principais:
   - [ ] Spring Web.
@@ -122,7 +127,7 @@ Desenvolver um microsservico em Java 21 com Spring Boot para encurtamento de URL
 ### 10. Docker e Deploy
 
 - [ ] Criar `Dockerfile` para build e execucao da aplicacao.
-- [ ] Usar imagem compativel com Java 21.
+- [ ] Usar imagem compativel com Java 25.
 - [ ] Configurar porta exposta da aplicacao.
 - [ ] Permitir configuracao via variaveis de ambiente.
 - [ ] Avaliar criacao de `docker-compose.yml` para subir aplicacao e Redis localmente.
@@ -145,7 +150,7 @@ Desenvolver um microsservico em Java 21 com Spring Boot para encurtamento de URL
 
 - [ ] Criar `README.md` com descricao do projeto.
 - [ ] Documentar requisitos locais:
-  - [ ] Java 21.
+  - [ ] Java 25.
   - [ ] Maven ou Gradle.
   - [ ] Docker.
   - [ ] Redis, se executar sem Docker.
