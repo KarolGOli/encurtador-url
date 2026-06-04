@@ -3,17 +3,34 @@ package desafio.encurtador_url.dto;
 import java.time.Instant;
 import java.util.Map;
 
-public record ErrorResponse(
-		Instant timestamp,
-		int status,
-		String error,
-		String message,
-		String path,
-		Map<String, String> details
-) {
+import lombok.Builder;
+import lombok.Getter;
+
+@Getter
+@Builder
+public class ErrorResponse {
+
+	private final Instant timestamp;
+
+	private final int status;
+
+	private final String error;
+
+	private final String message;
+
+	private final String path;
+
+	private final Map<String, String> details;
 
 	public static ErrorResponse of(int status, String error, String message, String path) {
-		return new ErrorResponse(Instant.now(), status, error, message, path, Map.of());
+		return ErrorResponse.builder()
+				.timestamp(Instant.now())
+				.status(status)
+				.error(error)
+				.message(message)
+				.path(path)
+				.details(Map.of())
+				.build();
 	}
 
 	public static ErrorResponse withDetails(
@@ -23,6 +40,13 @@ public record ErrorResponse(
 			String path,
 			Map<String, String> details
 	) {
-		return new ErrorResponse(Instant.now(), status, error, message, path, details);
+		return ErrorResponse.builder()
+				.timestamp(Instant.now())
+				.status(status)
+				.error(error)
+				.message(message)
+				.path(path)
+				.details(details)
+				.build();
 	}
 }

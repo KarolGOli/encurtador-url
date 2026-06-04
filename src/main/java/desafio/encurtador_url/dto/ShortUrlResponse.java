@@ -1,8 +1,17 @@
 package desafio.encurtador_url.dto;
 
-public record ShortUrlResponse(
-		String originalUrl,
-		String shortCode,
-		String shortUrl
-) {
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+
+@Getter
+@Builder
+@AllArgsConstructor
+public class ShortUrlResponse {
+
+	private final String originalUrl;
+
+	private final String shortCode;
+
+	private final String shortUrl;
 }
