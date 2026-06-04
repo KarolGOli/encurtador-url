@@ -57,11 +57,11 @@ Desenvolver um microsservico em Java 25 com Spring Boot para encurtamento de URL
 
 ### 3. Validacao da URL Original
 
-- [ ] Validar se o campo da URL foi informado.
-- [ ] Validar se a URL possui formato valido.
-- [ ] Validar protocolos permitidos, preferencialmente `http` e `https`.
-- [ ] Tratar URLs invalidas com resposta HTTP adequada, como `400 Bad Request`.
-- [ ] Definir se URLs repetidas geram novo codigo ou reutilizam codigo existente.
+- [x] Validar se o campo da URL foi informado.
+- [x] Validar se a URL possui formato valido.
+- [x] Validar protocolos permitidos, preferencialmente `http` e `https`.
+- [x] Tratar URLs invalidas com resposta HTTP adequada, como `400 Bad Request`.
+- [x] Definir se URLs repetidas geram novo codigo ou reutilizam codigo existente.
 
 ### 4. Geracao da URL Encurtada
 
@@ -174,6 +174,7 @@ Desenvolver um microsservico em Java 25 com Spring Boot para encurtamento de URL
 
 - [ ] A aplicacao aceita uma URL valida e retorna uma URL encurtada.
 - [ ] A aplicacao rejeita URLs invalidas com erro `400`.
+- [ ] Usar Lombok para reduzir boilerplate em DTOs, entidades e componentes simples, como @Getter, @Setter, @NoArgsConstructor, @AllArgsConstructor e @Builder, quando isso mantiver o codigo mais limpo.
 - [ ] A URL encurtada redireciona corretamente para a URL original.
 - [ ] Codigos inexistentes retornam erro `404`.
 - [ ] Os dados sao persistidos no Redis.
