@@ -1,0 +1,74 @@
+package desafio.encurtador_url.controller;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import desafio.encurtador_url.config.UrlShortenerProperties;
+import desafio.encurtador_url.dto.ShortenUrlRequest;
+import desafio.encurtador_url.dto.ShortenUrlResponse;
+import desafio.encurtador_url.entity.ShortUrl;
+import desafio.encurtador_url.service.ShortUrlGenerator;
+import desafio.encurtador_url.service.ShortUrlPersistenceService;
+import desafio.encurtador_url.service.UrlShorteningService;
+import desafio.encurtador_url.support.InMemoryShortUrlRepository;
+import java.net.URI;
+import java.util.Objects;
+import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+class ShortUrlControllerTest {
+
+    @Test
+    void shouldCreateShortUrl() {
+        ShortUrlController controller = new ShortUrlController(service());
+
+        ResponseEntity<ShortenUrlResponse> response = controller.shorten(new ShortenUrlRequest("https://example.com"));
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+        ShortenUrlResponse responseBody = Objects.requireNonNull(response.getBody());
+        assertThat(responseBody.originalUrl()).isEqualTo("https://example.com");
+        assertThat(responseBody.shortCode()).hasSize(8);
+        assertThat(responseBody.shortUrl()).isEqualTo("http://localhost:8080/" + responseBody.shortCode());
+    }
+
+    @Test
+    void shouldRedirectToOriginalUrl() {
+        ShortUrlController controller = new ShortUrlController(serviceWithPersistedShortUrl());
+
+        ResponseEntity<Void> response = controller.redirect("abc123");
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.FOUND);
+        assertThat(response.getHeaders().getLocation()).isEqualTo(URI.create("https://example.com"));
+    }
+
+    @Test
+    void shouldReturnNotFoundWhenShortCodeDoesNotExist() {
+        ShortUrlController controller = new ShortUrlController(serviceWithPersistedShortUrl());
+
+        ResponseEntity<Void> response = controller.redirect("missing");
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+    }
+
+    private UrlShorteningService serviceWithPersistedShortUrl() {
+        InMemoryShortUrlRepository repository = new InMemoryShortUrlRepository();
+        repository.save(ShortUrl.builder()
+                .shortCode("abc123")
+                .originalUrl("https://example.com")
+                .build());
+
+        return new UrlShorteningService(generator(), new ShortUrlPersistenceService(repository));
+    }
+
+    private UrlShorteningService service() {
+        return new UrlShorteningService(generator(), new ShortUrlPersistenceService(new InMemoryShortUrlRepository()));
+    }
+
+    private ShortUrlGenerator generator() {
+        UrlShortenerProperties properties = new UrlShortenerProperties();
+        properties.setBaseUrl("http://localhost:8080");
+        properties.setShortCodeLength(8);
+        properties.setMaxGenerationAttempts(10);
+        return new ShortUrlGenerator(properties);
+    }
+}

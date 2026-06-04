@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ShortenUrlRequest {
 
-    @NotBlank(message = "A URL original é obrigatória")
+    @NotBlank(message = "A URL original e obrigatoria")
     @ValidUrl
-    String url;
+    private String url;
 }

@@ -82,16 +82,16 @@ Desenvolver um microsservico em Java 25 com Spring Boot para encurtamento de URL
 
 ### 6. Endpoints da API
 
-- [ ] Criar endpoint para encurtar URL.
-- [ ] Definir contrato sugerido:
-  - [ ] `POST /api/v1/urls`
-  - [ ] Body: `{ "url": "https://exemplo.com" }`
-  - [ ] Response: `{ "originalUrl": "...", "shortCode": "...", "shortUrl": "..." }`
-- [ ] Criar endpoint de redirecionamento.
-- [ ] Definir contrato sugerido:
-  - [ ] `GET /{shortCode}`
-  - [ ] Resposta: redirecionamento HTTP `302 Found` ou `301 Moved Permanently`.
-- [ ] Retornar `404 Not Found` quando o codigo curto nao existir.
+- [x] Criar endpoint para encurtar URL.
+- [x] Definir contrato sugerido:
+  - [x] `POST /api/v1/urls`
+  - [x] Body: `{ "url": "https://exemplo.com" }`
+  - [x] Response: `{ "originalUrl": "...", "shortCode": "...", "shortUrl": "..." }`
+- [x] Criar endpoint de redirecionamento.
+- [x] Definir contrato sugerido:
+  - [x] `GET /{shortCode}`
+  - [x] Resposta: redirecionamento HTTP `302 Found` ou `301 Moved Permanently`.
+- [x] Retornar `404 Not Found` quando o codigo curto nao existir.
 
 ### 7. Tratamento de Erros
 
