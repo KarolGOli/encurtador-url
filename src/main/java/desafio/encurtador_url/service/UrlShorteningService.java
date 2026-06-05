@@ -1,7 +1,10 @@
 package desafio.encurtador_url.service;
 
+import desafio.encurtador_url.config.UrlShortenerProperties;
 import desafio.encurtador_url.dto.ShortenUrlResponse;
 import desafio.encurtador_url.entity.ShortUrl;
+
+import java.time.Duration;
 import java.time.Instant;
 import java.util.Optional;
 
@@ -15,6 +18,7 @@ public class UrlShorteningService {
 
     private final ShortUrlGenerator shortUrlGenerator;
     private final ShortUrlPersistenceService persistenceService;
+    private final UrlShortenerProperties properties;
 
     public ShortenUrlResponse shorten(String originalUrl) {
         String shortCode = shortUrlGenerator.generateUniqueShortCode(persistenceService::existsByShortCode);
@@ -22,6 +26,7 @@ public class UrlShorteningService {
                 .shortCode(shortCode)
                 .originalUrl(originalUrl)
                 .createdAt(Instant.now())
+                .expiresAt(resolveExpiresAt())
                 .build();
 
         ShortUrl savedShortUrl = persistenceService.save(shortUrl);
@@ -41,5 +46,15 @@ public class UrlShorteningService {
     public String getOriginalUrl(String shortCode) {
         return findOriginalUrl(shortCode)
                 .orElseThrow(() -> new ShortUrlNotFoundException(shortCode));
+    }
+
+    private Instant resolveExpiresAt() {
+        Duration urlExpiration = properties.getUrlExpiration();
+
+        if (urlExpiration.isZero() || urlExpiration.isNegative()) {
+            return null;
+        }
+
+        return Instant.now().plus(urlExpiration);
     }
 }

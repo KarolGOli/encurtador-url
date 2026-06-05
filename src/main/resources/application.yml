@@ -1,6 +1,6 @@
 spring:
   application:
-    name: encurtador_url
+    name: encurtador-url
   data:
     redis:
       host: ${REDIS_HOST:localhost}
@@ -14,3 +14,4 @@ app:
     base-url: "${APP_BASE_URL:http://localhost:${SERVER_PORT:8080}}"
     short-code-length: ${SHORT_CODE_LENGTH:8}
     max-generation-attempts: ${SHORT_CODE_MAX_ATTEMPTS:10}
+    url-expiration: ${URL_EXPIRATION:0s}

@@ -54,23 +54,34 @@ class ShortUrlControllerTest {
 
     private UrlShorteningService serviceWithPersistedShortUrl() {
         InMemoryShortUrlRepository repository = new InMemoryShortUrlRepository();
+        UrlShortenerProperties properties = properties();
         repository.save(ShortUrl.builder()
                 .shortCode("abc123")
                 .originalUrl("https://example.com")
                 .build());
 
-        return new UrlShorteningService(generator(), new ShortUrlPersistenceService(repository));
+        return new UrlShorteningService(generator(properties), new ShortUrlPersistenceService(repository), properties);
     }
 
     private UrlShorteningService service() {
-        return new UrlShorteningService(generator(), new ShortUrlPersistenceService(new InMemoryShortUrlRepository()));
+        UrlShortenerProperties properties = properties();
+
+        return new UrlShorteningService(
+                generator(properties),
+                new ShortUrlPersistenceService(new InMemoryShortUrlRepository()),
+                properties
+        );
     }
 
-    private ShortUrlGenerator generator() {
+    private ShortUrlGenerator generator(UrlShortenerProperties properties) {
+        return new ShortUrlGenerator(properties);
+    }
+
+    private UrlShortenerProperties properties() {
         UrlShortenerProperties properties = new UrlShortenerProperties();
         properties.setBaseUrl("http://localhost:8080");
         properties.setShortCodeLength(8);
         properties.setMaxGenerationAttempts(10);
-        return new ShortUrlGenerator(properties);
+        return properties;
     }
 }

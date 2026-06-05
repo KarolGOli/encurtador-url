@@ -70,7 +70,9 @@ public class GlobalExceptionHandlerTest {
     private MockMvc mockMvc(UrlShortenerProperties properties) {
         ShortUrlGenerator generator = new ShortUrlGenerator(properties);
         ShortUrlPersistenceService persistenceService = new ShortUrlPersistenceService(new InMemoryShortUrlRepository());
-        ShortUrlController controller = new ShortUrlController(new UrlShorteningService(generator, persistenceService));
+        ShortUrlController controller = new ShortUrlController(
+                new UrlShorteningService(generator, persistenceService, properties)
+        );
 
         LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
         validator.afterPropertiesSet();
