@@ -5,6 +5,8 @@ import java.security.SecureRandom;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.random.RandomGenerator;
+
+import desafio.encurtador_url.exception.ShortCodeGenerationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -37,7 +39,7 @@ public class ShortUrlGenerator {
             }
         }
 
-        throw new IllegalStateException("Nao foi possivel gerar um codigo curto unico");
+        throw new ShortCodeGenerationException("Nao foi possivel gerar um codigo curto unico");
     }
 
     public String buildShortUrl(String shortCode) {

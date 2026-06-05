@@ -1,11 +1,13 @@
 package desafio.encurtador_url.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import desafio.encurtador_url.config.UrlShortenerProperties;
 import desafio.encurtador_url.dto.ShortenUrlRequest;
 import desafio.encurtador_url.dto.ShortenUrlResponse;
 import desafio.encurtador_url.entity.ShortUrl;
+import desafio.encurtador_url.exception.ShortUrlNotFoundException;
 import desafio.encurtador_url.service.ShortUrlGenerator;
 import desafio.encurtador_url.service.ShortUrlPersistenceService;
 import desafio.encurtador_url.service.UrlShorteningService;
@@ -45,9 +47,9 @@ class ShortUrlControllerTest {
     void shouldReturnNotFoundWhenShortCodeDoesNotExist() {
         ShortUrlController controller = new ShortUrlController(serviceWithPersistedShortUrl());
 
-        ResponseEntity<Void> response = controller.redirect("missing");
-
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+        assertThatThrownBy(() -> controller.redirect("missing"))
+                .isInstanceOf(ShortUrlNotFoundException.class)
+                .hasMessage("URL encurtada nao encontrada para o codigo: missing");
     }
 
     private UrlShorteningService serviceWithPersistedShortUrl() {

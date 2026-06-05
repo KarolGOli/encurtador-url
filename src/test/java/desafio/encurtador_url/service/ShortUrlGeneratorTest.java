@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import desafio.encurtador_url.config.UrlShortenerProperties;
+import desafio.encurtador_url.exception.ShortCodeGenerationException;
 import org.junit.jupiter.api.Test;
 
 class ShortUrlGeneratorTest {
@@ -46,7 +47,7 @@ class ShortUrlGeneratorTest {
             attempts.incrementAndGet();
             return true;
         }))
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(ShortCodeGenerationException.class)
                 .hasMessage("Nao foi possivel gerar um codigo curto unico");
 
         assertThat(attempts).hasValue(3);

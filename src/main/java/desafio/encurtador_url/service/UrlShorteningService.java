@@ -4,6 +4,8 @@ import desafio.encurtador_url.dto.ShortenUrlResponse;
 import desafio.encurtador_url.entity.ShortUrl;
 import java.time.Instant;
 import java.util.Optional;
+
+import desafio.encurtador_url.exception.ShortUrlNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +36,10 @@ public class UrlShorteningService {
     public Optional<String> findOriginalUrl(String shortCode) {
         return persistenceService.findByShortCode(shortCode)
                 .map(ShortUrl::getOriginalUrl);
+    }
+
+    public String getOriginalUrl(String shortCode) {
+        return findOriginalUrl(shortCode)
+                .orElseThrow(() -> new ShortUrlNotFoundException(shortCode));
     }
 }

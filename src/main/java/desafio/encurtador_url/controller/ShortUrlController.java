@@ -29,10 +29,10 @@ public class ShortUrlController {
 
     @GetMapping("/{shortCode}")
     public ResponseEntity<Void> redirect(@PathVariable String shortCode) {
-        return urlShorteningService.findOriginalUrl(shortCode)
-                .map(originalUrl -> ResponseEntity.status(HttpStatus.FOUND)
-                        .location(URI.create(originalUrl))
-                        .<Void>build())
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        String originalUrl = urlShorteningService.getOriginalUrl(shortCode);
+
+        return ResponseEntity.status(HttpStatus.FOUND)
+                .location(URI.create(originalUrl))
+                .build();
     }
 }
